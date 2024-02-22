@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using MyWebApiApp.Data;
+using MyWebApiApp.Models;
 using MyWebApiApp.Services;
 using System;
 using System.Text;
@@ -45,6 +47,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ILoaiRepository, LoaiRepositoryInMemory>();
 builder.Services.AddScoped<IHangHoaRepository, HangHoaRepository>();
 
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -56,6 +60,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
