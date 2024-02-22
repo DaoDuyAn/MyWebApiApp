@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using MyWebApiApp.Data;
+using MyWebApiApp.Services;
 using System;
 using System.Text;
 
@@ -39,6 +40,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+//builder.Services.AddScoped<ILoaiRepository, LoaiRepository>();
+builder.Services.AddScoped<ILoaiRepository, LoaiRepositoryInMemory>();
 
 var app = builder.Build();
 
