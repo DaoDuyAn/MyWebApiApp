@@ -43,6 +43,7 @@ builder.Services.AddSwaggerGen();
 
 //builder.Services.AddScoped<ILoaiRepository, LoaiRepository>();
 builder.Services.AddScoped<ILoaiRepository, LoaiRepositoryInMemory>();
+builder.Services.AddScoped<IHangHoaRepository, HangHoaRepository>();
 
 var app = builder.Build();
 
